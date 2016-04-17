@@ -1,6 +1,6 @@
 # AFNetworkActivityLumberjackLogger
 
-`AFNetworkActivityLumberjackLogger` is an extension for [AFNetworking](http://github.com/AFNetworking/AFNetworking/) 2.0 that logs network requests as they are sent and received. It is forked from [AFNetworkActivityLogger](https://github.com/AFNetworking/AFNetworkActivityLogger) but now with CocoaLumberjack logging.
+`AFNetworkActivityLumberjackLogger` is an extension for [AFNetworking](http://github.com/AFNetworking/AFNetworking/) 3.0 that logs network requests as they are sent and received. It is forked from [AFNetworkActivityLogger](https://github.com/AFNetworking/AFNetworkActivityLogger) but now with CocoaLumberjack logging.
 
 > `AFNetworkActivityLumberjackLogger` listens for `AFNetworkingOperationDidStartNotification` / `AFNetworkingOperationDidFinishNotification` and `AFNetworkingTaskDidStartNotification` / `AFNetworkingTaskDidFinishNotification` notifications, which are posted by AFNetworking as request operations and session tasks are started and finish. For further customization of logging output, users are encouraged to implement desired functionality by listening for these notifications.
 
@@ -12,7 +12,7 @@ Add the following code to `AppDelegate.m -application:didFinishLaunchingWithOpti
 [[AFNetworkActivityLogger sharedLogger] startLogging];
 ```
 
-Now all `AFURLConnectionOperation` and `NSURLSessionTask` objects created by an `AFURLSessionManager` will have their request and response logged to the console, a la:
+Now all `NSURLSessionTask` objects created by an `AFURLSessionManager` will have their request and response logged to the console, a la:
 
 ```
 GET http://example.com/foo/bar.json
