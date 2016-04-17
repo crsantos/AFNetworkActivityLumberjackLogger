@@ -21,7 +21,6 @@
 // THE SOFTWARE.
 
 #import "AFNetworkActivityLogger.h"
-#import "AFURLConnectionOperation.h"
 #import "AFURLSessionManager.h"
 
 #import <objc/runtime.h>
@@ -29,9 +28,7 @@
 
 static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notification) {
     NSURLRequest *request = nil;
-    if ([[notification object] isKindOfClass:[AFURLConnectionOperation class]]) {
-        request = [(AFURLConnectionOperation *)[notification object] request];
-    } else if ([[notification object] respondsToSelector:@selector(originalRequest)]) {
+    if ([[notification object] respondsToSelector:@selector(originalRequest)]) {
         request = [[notification object] originalRequest];
     }
 
@@ -40,18 +37,13 @@ static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notificat
 
 static NSError * AFNetworkErrorFromNotification(NSNotification *notification) {
     NSError *error = nil;
-    if ([[notification object] isKindOfClass:[AFURLConnectionOperation class]]) {
-        error = [(AFURLConnectionOperation *)[notification object] error];
-    }
-    
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+
     if ([[notification object] isKindOfClass:[NSURLSessionTask class]]) {
         error = [(NSURLSessionTask *)[notification object] error];
         if (!error) {
             error = notification.userInfo[AFNetworkingTaskDidCompleteErrorKey];
         }
     }
-#endif
     
     return error;
 }
