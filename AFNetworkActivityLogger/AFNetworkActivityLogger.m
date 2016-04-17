@@ -142,9 +142,7 @@ static void * AFNetworkRequestStartDate = &AFNetworkRequestStartDate;
     }
 
     id responseObject = nil;
-    if ([[notification object] respondsToSelector:@selector(responseString)]) {
-        responseObject = [[notification object] responseString];
-    } else if (notification.userInfo) {
+    if (notification.userInfo) {
         responseObject = notification.userInfo[AFNetworkingTaskDidCompleteSerializedResponseKey];
     }
 
