@@ -24,7 +24,7 @@
 #import "AFURLSessionManager.h"
 
 #import <objc/runtime.h>
-#import "DDLog.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notification) {
     NSURLRequest *request = nil;
