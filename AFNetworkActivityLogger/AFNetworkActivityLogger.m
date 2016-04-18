@@ -26,6 +26,12 @@
 #import <objc/runtime.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
+#if defined(DEBUG)
+static const DDLogLevel ddLogLevel = DDLogLevelAll;
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelOff;
+#endif
+
 static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notification) {
     NSURLRequest *request = nil;
     if ([[notification object] respondsToSelector:@selector(originalRequest)]) {
